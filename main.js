@@ -23,6 +23,8 @@ module.exports.loop = function () {
         var roomStructures = Game.rooms[config.homeRoom].find(FIND_MY_STRUCTURES, {
             filter:function(st) { return st.hits < st.hitsMax; }
         });
+           
+        console.log(roomStructures);
             
         var closestDamagedStructure = roomStructures[0];
         if(closestDamagedStructure) { console.log("Repairing:" + tower.repair(closestDamagedStructure)); }
