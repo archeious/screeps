@@ -7,11 +7,11 @@ var roleDefender = require('role.defender');
 var config = {
     homeRoom: 'W77S34',
     roles: {
-        builder   : {role: 'build',    min:2, run: roleBuilder.run },
+        builder   : {role: 'build',    min:5, run: roleBuilder.run },
         defender  : {role: 'defend',   min:2, run: roleDefender.run },
         harvester : {role: 'harvest',  min:6, run: roleHarvester.run },
         repairer  : {role: 'repair',   min:2, run: roleRepairer.run },
-        upgrader  : {role: 'upgrader', min:10, run: roleUpgrader.run },
+        upgrader  : {role: 'upgrader', min:12, run: roleUpgrader.run },
     }
 };
 
@@ -53,7 +53,7 @@ module.exports.loop = function () {
     
     console.log("There are currently " + numDefenders + "/" + minDefenders + " defenders " 
         + numRepairers + "/" + minRepairers + " repairers "
-        + numHarvesters + "/ " + minHarvesters + " harvesters "
+        + numHarvesters + "/" + minHarvesters + " harvesters "
         + numUpgraders + "/" + minUpgraders + " upgraders "
         + numBuilders + "/" + minBuilders + " builders ");
     
