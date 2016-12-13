@@ -19,7 +19,7 @@ module.exports.loop = function () {
     console.log("Tick:" + Game.time + " Home Room:" + config['homeRoom']);
     
     // Tower Defense
-    var towers = _.filter(Game.structures, s=> s.structureType ==STRUCTURE_TOWER);
+    var towers = _.filter(Game.structures, s => s.structureType == STRUCTURE_TOWER);
     for (let tower of towers) {
         var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(target != undefined) {
