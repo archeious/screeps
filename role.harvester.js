@@ -11,7 +11,7 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        if (typeof(creep.memory.source) == undefined) { 
+        if (typeof(creep.memory.source) == 'undefined') { 
             var newSource = this.nextSource();
             console.log("[CREEP]:"+ creep.name + " does not have a source.  Setting source to ");
             creep.memory.source = newSource; 
