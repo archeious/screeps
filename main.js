@@ -53,9 +53,9 @@ module.exports.loop = function () {
     
     console.log("There are currently " + numDefenders + "/" + minDefenders + " defenders " 
         + numRepairers + "/" + minRepairers + " repairers "
-        + numHarvesters + "/ " + minHarvesters + " harvesters"
-        + numUpgraders + "/" + minUpgraders + " upgraders"
-        + numBuilders + "/" + minBuilders + " builders");
+        + numHarvesters + "/ " + minHarvesters + " harvesters "
+        + numUpgraders + "/" + minUpgraders + " upgraders "
+        + numBuilders + "/" + minBuilders + " builders ");
     
     if (numHarvesters < minHarvesters) {
         var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
