@@ -42,13 +42,13 @@ module.exports.loop = function () {
     
     var minDefenders = config.roles['defender'].min;
     var numDefenders = _.sum(Game.creeps, (c) => c.memory.role == 'defend');
-    var minHarvesters = 6;
+    var minHarvesters = config.roles['harvester'].min;;
     var numHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvest');
-    var minRepairers = 1;
+    var minRepairers = config.roles['repairer'].min;;
     var numRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repair');
-    var minUpgraders = 10;
+    var minUpgraders = config.roles['upgrader'].min;;
     var numUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'claim');
-    var minBuilders = 2;
+    var minBuilders = config.roles['builder'].min;;
     var numBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'build');
     
     console.log("There are currently " + numDefenders + "/" + minDefenders + " defenders " 
