@@ -7,11 +7,11 @@ var roleDefender = require('role.defender');
 var config = {
     homeRoom: 'W77S34',
     roles: {
-        builder   : {role: 'build',    min:5, run: roleBuilder.run },
+        builder   : {role: 'build',    min:1, run: roleBuilder.run },
         defender  : {role: 'defend',   min:2, run: roleDefender.run },
-        harvester : {role: 'harvest',  min:8, run: roleHarvester.run },
+        harvester : {role: 'harvest',  min:9, run: roleHarvester.run },
         repairer  : {role: 'repair',   min:1, run: roleRepairer.run },
-        upgrader  : {role: 'upgrader', min:8, run: roleUpgrader.run },
+        upgrader  : {role: 'upgrader', min:12, run: roleUpgrader.run },
     }
 };
 
