@@ -4,8 +4,18 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 
+var config = {
+    homeRoom: 'W77S34',
+    roles: {
+        defender  : {role: 'defender', min:2, run: roleDefender.run },
+        upgrader  : {role: 'upgrader', min:2, run: roleUpgrader.run },
+        harvester : {role: 'defender', min:2, run: roleHarvester.run },
+        repairer  : {role: 'defender', min:2, run: roleRepairer.run },
+    }
+};
+
 module.exports.loop = function () {
-    console.log("Tick:" + Game.time);
+    console.log("Tick:" + Game.time + " Home Room:" + config['homeRoom']);
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
             creep.memory.home = 'W77S34';
