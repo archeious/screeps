@@ -12,8 +12,8 @@ var roleHarvester = {
     /** @param {Creep} creep **/
     run: function(creep) {
 	    if(creep.carry.energy < creep.carryCapacity) {
+            if (typeof(creep.memory.source) == undefined) { creep.memory.source = this.nextSource(); }
             var sources = creep.room.find(FIND_SOURCES);
-            if (typeof(creep.memory.source) == undefined) { creep.memory.source = 0; }
             if (sources[creep.memory.source] == undefined) {
                 console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
                 creep.memory.source = this.nextSource;
