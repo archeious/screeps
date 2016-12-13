@@ -16,13 +16,7 @@ var roleDefender = {
                 creep.moveTo(hostiles[0]);
             }            
         } else {
-            if(creep.carry.energy < creep.carryCapacity) {
-            var sources = creep.room.find(FIND_SOURCES);
-            if (typeof(creep.memory.source) == undefined) { creep.memory.source = 0; }
-                if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(sources[creep.memory.source]);
-                }
-            }
+            creep.moveTo(Game.flags['EastGate']);
         }
     },
 
