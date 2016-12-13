@@ -22,7 +22,7 @@ var roleRepairer = {
 
 	    if(creep.memory.repairing) {
 	        var roomStructures = creep.room.find(FIND_STRUCTURES, {filter:function(st){
-                return st.structureType == STRUCTURE_WALL ||  st.my;
+                return st.structureType == STRUCTURE_WALL || st.structureType == STRUCTURE_ROAD ||  st.my;
             }});
             
             var roomStructureIndex;
