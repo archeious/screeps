@@ -20,7 +20,7 @@ module.exports.loop = function () {
     
     var tower = Game.getObjectById('58505a22f89998f143bae36f'); 
     if(tower) { 
-        var roomStructures = creep.room.find(FIND_STRUCTURES, {filter:function(st){
+        var roomStructures = Game.rooms[config.homeRoom].find(FIND_STRUCTURES, {filter:function(st){
                 return (st.structureType == STRUCTURE_WALL ||  st.my) && (st.hits < st.hitsMax);
             }});
         var closestDamagedStructure = roomStructures[0];
