@@ -18,19 +18,14 @@ var config = {
 module.exports.loop = function () {
     console.log("Tick:" + Game.time + " Home Room:" + config['homeRoom']);
     
-    var tower = Game.getObjectById('58505a22f89998f143bae36f'); 
-    if(tower) { 
-        var roomStructures = Game.rooms[config.homeRoom].find(FIND_MY_STRUCTURES, {
-            filter:function(st) { console.log("FILTER:" + st.name + " " + st.hits + "/" + st.hitsMax); return st.hits < st.hitsMax; }
-        });
-           
-        console.log(roomStructures);
-            
-        var closestDamagedStructure = roomStructures[0];
-        if(closestDamagedStructure) { console.log("Repairing:" + tower.repair(closestDamagedStructure)); }
-        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-        if(closestHostile) {
-            tower.attack(closestHostile);
+    // Tower Defense
+    var towers = Game.rooms[config.homeRoom].find(FIND_STRUCTURES, {
+        filter: (s) => s.structureType == STRUCTURE_TOWER    
+    });    
+    for (let tower of towers) {
+        var target = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if(target != undefined) {
+            tower.attack(target);
         }
     }
     
