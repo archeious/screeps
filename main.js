@@ -21,7 +21,7 @@ module.exports.loop = function () {
     var tower = Game.getObjectById('58505a22f89998f143bae36f'); 
     if(tower) { 
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, { 
-            filter: (structure) => { return structure.hits < structures.hitsMax; }
+            filter: (structure) => { return structure.hits < structure.hitsMax; }
         }); 
         if(closestDamagedStructure) { tower.repair(closestDamagedStructure); }
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
