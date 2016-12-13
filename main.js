@@ -20,12 +20,10 @@ module.exports.loop = function () {
     
     var tower = Game.getObjectById('58505a22f89998f143bae36f'); 
     if(tower) { 
-        var roomStructures = Game.rooms[config.homeRoom].find(FIND_STRUCTURES, {filter:function(st){
-                return st.my && st.hits < st.hitsMax;
-            }});
+        var roomStructures = Game.rooms[config.homeRoom].find(FIND_MY_STRUCTURES, {
+            filter:function(st) { return st.hits < st.hitsMax; }
+        });
             
-        console.log("ROOM NAME:" + Game.rooms[config.homeRoom].name);
-        console.log(roomStructures.length);
         var closestDamagedStructure = roomStructures[0];
         if(closestDamagedStructure) { console.log("Repairing:" + tower.repair(closestDamagedStructure)); }
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
