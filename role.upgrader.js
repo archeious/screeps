@@ -11,6 +11,7 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        creep.say("u");
         if (typeof(creep.memory.home) != 'undefined') {
             if (creep.room.name != creep.memory.home) {
                 console.log (creep.name + " is away from " + creep.memory.home);

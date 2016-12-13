@@ -54,7 +54,7 @@ module.exports.loop = function () {
     else if (numDefenders < minDefenders) {
         var name = Game.spawns['Spawn1'].createCreep( [ATTACK, RANGED_ATTACK, MOVE,  MOVE], undefined, {role:'defend', state:'defend', source: roleDefender.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
-            console.log("Spawned new creep: " + name + " as repairer");
+            console.log("Spawned new creep: " + name + " as defender");
         };
     }
     else if (numRepairers < minRepairers) {
