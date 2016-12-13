@@ -11,18 +11,19 @@ var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
+        if (typeof(creep.memory.source) == undefined) { 
+            var newSource = this.nextSource();
+            console.log("[CREEP]:"+ creep.name + " does not have a source.  Setting source to ");
+            creep.memory.source = newSource; 
+        }
+        
+        console.log("[CREEP]:"+ creep.name + " has a source of " + creep.memory.source);                        
+
 	    if(creep.carry.energy < creep.carryCapacity) {
-            if (typeof(creep.memory.source) == undefined) { 
-                var newSource = this.nextSource();
-                console.log("[CREEP]:"+ creep.name + " does not have a source.  Setting source to ");
-                creep.memory.source = newSource; 
-            }
             var sources = creep.room.find(FIND_SOURCES);
             if (sources[creep.memory.source] == undefined) {
                 console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
                 creep.memory.source = this.nextSource;
-            } else {
-                console.log("[CREEP]:"+ creep.name + " has a source of " + creep.memory.source);                
             }
             if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[creep.memory.source]);
