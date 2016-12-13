@@ -50,11 +50,11 @@ module.exports.loop = function () {
     var minBuilders = 2;
     var numBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'build');
     
-    console.log("There are currently " + numDefenders + " of " + minDefenders + " defenders");
-    console.log("There are currently " + numRepairers + " of " + minRepairers + " repairers");
-    console.log("There are currently " + numHarvesters + " of " + minHarvesters + " harvesters");
-    console.log("There are currently " + numUpgraders + " of " + minUpgraders + " upgraders");
-    console.log("There are currently " + numBuilders + " of " + minBuilders + " builders");
+    console.log("There are currently " + numDefenders + "/" + minDefenders + " defenders " 
+        + numRepairers + "/" + minRepairers + " repairers "
+        + numHarvesters + "/ " + minHarvesters + " harvesters"
+        + numUpgraders + "/" + minUpgraders + " upgraders"
+        + numBuilders + "/" + minBuilders + " builders");
     
     if (numHarvesters < minHarvesters) {
         var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
