@@ -27,7 +27,11 @@ var roleHarvester = {
                     }
             });
             if(targets.length > 0) {
-                if(creep.transfer(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                var energyAvail = targets[0].energyCapacity - targets[0].energy;
+                var transAmount = energyAvail;
+                if (transAmount > creep.carry.energy) { transAmount= creep.carry.energy; }
+                if(creep.transfer(targets[0], RESOURCE_ENERGY, transAmount) == ERR_NOT_IN_RANGE) {
+                    console.log("transferring " + energyAvail);
                     creep.moveTo(targets[0]);
                 }
             } else {

@@ -5,7 +5,7 @@ var roleRepairer = require('role.repairer');
 var roleDefender = require('role.defender');
 
 module.exports.loop = function () {
-
+    console.log("Tick:" + Game.time);
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
             creep.memory.home = 'W77S34';
@@ -30,13 +30,13 @@ module.exports.loop = function () {
     }
     var minDefenders = 2;
     var numDefenders = _.sum(Game.creeps, (c) => c.memory.role == 'defend');
-    var minHarvesters = 3;
+    var minHarvesters = 6;
     var numHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvest');
-    var minRepairers = 2;
+    var minRepairers = 1;
     var numRepairers = _.sum(Game.creeps, (c) => c.memory.role == 'repair');
     var minUpgraders = 10;
     var numUpgraders = _.sum(Game.creeps, (c) => c.memory.role == 'claim');
-    var minBuilders = 6;
+    var minBuilders = 2;
     var numBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'build');
     
     console.log("There are currently " + numDefenders + " of " + minDefenders + " defenders");
@@ -46,7 +46,7 @@ module.exports.loop = function () {
     console.log("There are currently " + numBuilders + " of " + minBuilders + " builders");
     
     if (numHarvesters < minHarvesters) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, CARRY, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as harvester");
         };
@@ -58,13 +58,13 @@ module.exports.loop = function () {
         };
     }
     else if (numRepairers < minRepairers) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, CARRY, MOVE,  MOVE], undefined, {role:'repair', state:'harvest', source: roleRepairer.nextSource(), home: 'W77S34' });
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE,  MOVE], undefined, {role:'repair', state:'harvest', source: roleRepairer.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as repairer");
         };
     }
     else if (numUpgraders < minUpgraders) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, CARRY, MOVE, MOVE], undefined, {role:'claim', state:'harvest', source: roleUpgrader.nextSource(), home: 'W77S34' });
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], undefined, {role:'claim', state:'harvest', source: roleUpgrader.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as upgrader");
         };

@@ -10,6 +10,7 @@ var roleRepairer = {
     },
     /** @param {Creep} creep **/
     run: function(creep) {
+        creep.say("r");
 	    if(creep.memory.repairing && creep.carry.energy == 0) {
             creep.memory.repairing = false;
             creep.say('harvesting');
@@ -21,14 +22,14 @@ var roleRepairer = {
 
 	    if(creep.memory.repairing) {
 	        var roomStructures = creep.room.find(FIND_STRUCTURES, {filter:function(st){
-                return st.structureType == 'road' || st.my;
+                return st.structureType == STRUCTURE_WALL ||  st.my;
             }});
             
             var roomStructureIndex;
             var roomStructuresCount = roomStructures.length;
             for(roomStructureIndex = 0; roomStructureIndex < roomStructuresCount; roomStructureIndex++) {
                 var roomStructure = roomStructures[roomStructureIndex];
-                if(roomStructure.hits < roomStructure.hitsMax) {
+                if(roomStructure.hits < 5000) {
                     if(creep.repair(roomStructure) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(roomStructure);
                         console.log("Moving to " + roomStructure.name);
