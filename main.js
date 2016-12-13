@@ -39,6 +39,7 @@ module.exports.loop = function () {
             break;
         } 
     }
+    
     var minDefenders = config.roles['defender'].min;
     var numDefenders = _.sum(Game.creeps, (c) => c.memory.role == 'defend');
     var minHarvesters = 6;
