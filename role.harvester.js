@@ -13,12 +13,9 @@ var roleHarvester = {
     run: function(creep) {
         if (typeof(creep.memory.source) == 'undefined') { 
             var newSource = this.nextSource();
-            console.log("[CREEP]:"+ creep.name + " does not have a source.  Setting source to ");
             creep.memory.source = newSource; 
         }
-        
-        console.log("[CREEP]:"+ creep.name + " has a source of " + creep.memory.source);                        
-
+      
 	    if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
             if (sources[creep.memory.source] == undefined) {
