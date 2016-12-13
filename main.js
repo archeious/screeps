@@ -9,9 +9,9 @@ var config = {
     roles: {
         builder   : {role: 'build',    min:5, run: roleBuilder.run },
         defender  : {role: 'defend',   min:2, run: roleDefender.run },
-        harvester : {role: 'harvest',  min:9, run: roleHarvester.run },
-        repairer  : {role: 'repair',   min:2, run: roleRepairer.run },
-        upgrader  : {role: 'upgrader', min:9, run: roleUpgrader.run },
+        harvester : {role: 'harvest',  min:8, run: roleHarvester.run },
+        repairer  : {role: 'repair',   min:1, run: roleRepairer.run },
+        upgrader  : {role: 'upgrader', min:8, run: roleUpgrader.run },
     }
 };
 
@@ -66,11 +66,11 @@ module.exports.loop = function () {
     var minBuilders = config.roles['builder'].min;;
     var numBuilders = _.sum(Game.creeps, (c) => c.memory.role == 'build');
     
-    console.log("There are currently " + numDefenders + "/" + minDefenders + " defenders " 
-        + numRepairers + "/" + minRepairers + " repairers "
-        + numHarvesters + "/" + minHarvesters + " harvesters "
-        + numUpgraders + "/" + minUpgraders + " upgraders "
-        + numBuilders + "/" + minBuilders + " builders ");
+    console.log("There are currently (" + numDefenders + "/" + minDefenders + " defenders) (" 
+        + numRepairers + "/" + minRepairers + " repairers) ("
+        + numHarvesters + "/" + minHarvesters + " harvesters) ("
+        + numUpgraders + "/" + minUpgraders + " upgraders) ("
+        + numBuilders + "/" + minBuilders + " builders) ");
     
     if (numHarvesters < minHarvesters) {
         var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
