@@ -24,7 +24,7 @@ module.exports.loop = function () {
                 return st.my && st.hits < st.hitsMax;
             }});
         var closestDamagedStructure = roomStructures[0];
-        if(closestDamagedStructure) { tower.repair(closestDamagedStructure); }
+        if(closestDamagedStructure) { console.log("Repairing:" + tower.repair(closestDamagedStructure)); }
         var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
         if(closestHostile) {
             tower.attack(closestHostile);
