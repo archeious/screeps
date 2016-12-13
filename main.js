@@ -7,10 +7,11 @@ var roleDefender = require('role.defender');
 var config = {
     homeRoom: 'W77S34',
     roles: {
-        defender  : {role: 'defender', min:2, run: roleDefender.run },
-        upgrader  : {role: 'upgrader', min:2, run: roleUpgrader.run },
-        harvester : {role: 'defender', min:2, run: roleHarvester.run },
-        repairer  : {role: 'defender', min:2, run: roleRepairer.run },
+        builder   : {role: 'build',    min:2, run: roleBuilder.run },
+        defender  : {role: 'defend',   min:2, run: roleDefender.run },
+        harvester : {role: 'harvest',  min:6, run: roleHarvester.run },
+        repairer  : {role: 'repair',   min:2, run: roleRepairer.run },
+        upgrader  : {role: 'upgrader', min:10, run: roleUpgrader.run },
     }
 };
 
@@ -18,7 +19,7 @@ module.exports.loop = function () {
     console.log("Tick:" + Game.time + " Home Room:" + config['homeRoom']);
     for(var name in Game.creeps) {
         var creep = Game.creeps[name];
-            creep.memory.home = 'W77S34';
+            creep.memory.home = config.homeRoom;
         switch (creep.memory.role) {
             case 'claim':
                 roleUpgrader.run(creep);
@@ -38,7 +39,7 @@ module.exports.loop = function () {
             break;
         } 
     }
-    var minDefenders = 2;
+    var minDefenders = config.roles['defender'].min;
     var numDefenders = _.sum(Game.creeps, (c) => c.memory.role == 'defend');
     var minHarvesters = 6;
     var numHarvesters = _.sum(Game.creeps, (c) => c.memory.role == 'harvest');
