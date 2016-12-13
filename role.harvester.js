@@ -14,6 +14,10 @@ var roleHarvester = {
 	    if(creep.carry.energy < creep.carryCapacity) {
             var sources = creep.room.find(FIND_SOURCES);
             if (typeof(creep.memory.source) == undefined) { creep.memory.source = 0; }
+            if (sources[creep.memory.source].energy < creep.carryCapacity) {
+                console.log("Source is empty, switching to new source");
+                creep.memory.source = this.nextSource;
+            }
             if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[creep.memory.source]);
             }
