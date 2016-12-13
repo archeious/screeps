@@ -21,7 +21,7 @@ module.exports.loop = function () {
     var tower = Game.getObjectById('58505a22f89998f143bae36f'); 
     if(tower) { 
         var roomStructures = Game.rooms[config.homeRoom].find(FIND_MY_STRUCTURES, {
-            filter:function(st) { console.log("FILTER:" + st.name + " " + st.hits + "/" + st.maxHits); return st.hits < st.hitsMax; }
+            filter:function(st) { console.log("FILTER:" + st.name + " " + st.hits + "/" + st.hitsMax); return st.hits < st.hitsMax; }
         });
            
         console.log(roomStructures);
