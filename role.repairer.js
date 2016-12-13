@@ -31,10 +31,8 @@ var roleRepairer = {
                 if(roomStructure.hits < 5000) {
                     if(creep.repair(roomStructure) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(roomStructure);
-                        console.log("Moving to " + roomStructure.name);
                         return;
                     } else {
-                        console.log("repaired " + roomStructure.name);
                         return;
                     }
                 }
