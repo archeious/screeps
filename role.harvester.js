@@ -21,6 +21,8 @@ var roleHarvester = {
             if (sources[creep.memory.source] == undefined) {
                 console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
                 creep.memory.source = this.nextSource;
+            } else {
+                console.log("[CREEP]:"+ creep.name + " has a source of " + creep.memory.source);                
             }
             if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(sources[creep.memory.source]);
