@@ -9,7 +9,7 @@ var config = {
     roles: {
         builder   : {role: 'build',    min:2, run: roleBuilder.run },
         defender  : {role: 'defend',   min:2, run: roleDefender.run },
-        harvester : {role: 'harvest',  min:8, run: roleHarvester.run },
+        harvester : {role: 'harvest',  min:6, run: roleHarvester.run },
         repairer  : {role: 'repair',   min:1, run: roleRepairer.run },
         upgrader  : {role: 'upgrader', min:4, run: roleUpgrader.run },
     }
