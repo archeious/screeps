@@ -15,18 +15,27 @@ var roleHarvester = {
             var newSource = this.nextSource();
             creep.memory.source = newSource; 
         }
+        if (typeof(creep.memory.state) == 'undefined') {
+            creep.memory.state = 'harvest';
+        } 
       
-	    if(creep.carry.energy < creep.carryCapacity) {
-            var sources = creep.room.find(FIND_SOURCES);
-            if (sources[creep.memory.source].energy == 0) {
-                console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
-                creep.memory.source = this.nextSource;
+        if (creep.memory.state == 'harvest') {     
+            if(creep.carry.energy < creep.carryCapacity) {
+                var sources = creep.room.find(FIND_SOURCES);
+                if (sources[creep.memory.source].energy == 0) {
+                    console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
+                    creep.memory.source = this.nextSource;
+                }
+                if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(sources[creep.memory.source]);
+                }
+            } else {
+                creep.memory.state = 'deliver';
             }
-            if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[creep.memory.source]);
-            }
+            return;
         }
-        else {
+        
+        if (creep.memory.state == 'deliver') {
             var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_TOWER || structure.structureType == STRUCTURE_EXTENSION || structure.structureType == STRUCTURE_SPAWN) &&
@@ -43,7 +52,11 @@ var roleHarvester = {
             } else {
                 creep.moveTo(Game.spawns['Spawn1']);
             }
+            if (creep.carry.energy == 0) {
+                creep.memory.state = 'harvest';
+            }
         }
+        
 	}
 };
 
