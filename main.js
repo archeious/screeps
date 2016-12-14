@@ -93,7 +93,7 @@ module.exports.loop = function () {
         };
     }
     else if (numBuilders < minBuilders) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, CARRY,CARRY, MOVE, MOVE], undefined, {role:'build', state:'harvest', source: roleBuilder.nextSource(), home: 'W77S34' });
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role:'build', state:'harvest', source: roleBuilder.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as builder");
         };
