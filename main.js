@@ -11,7 +11,7 @@ var config = {
         defender  : {role: 'defend',   min:2, run: roleDefender.run },
         harvester : {role: 'harvest',  min:11, run: roleHarvester.run },
         repairer  : {role: 'repair',   min:3, run: roleRepairer.run },
-        upgrader  : {role: 'upgrader', min:6, run: roleUpgrader.run },
+        upgrader  : {role: 'upgrader', min:0, run: roleUpgrader.run },
     }
 };
 
