@@ -69,7 +69,7 @@ module.exports.loop = function () {
         + numBuilders + "/" + minBuilders + " builders) ");
     
     if (numHarvesters < minHarvesters) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as harvester");
         };
