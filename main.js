@@ -69,7 +69,7 @@ module.exports.loop = function () {
         + numBuilders + "/" + minBuilders + " builders) ");
     
     if (numHarvesters < minHarvesters) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE], undefined, {role:'harvest', state:'harvest', home: 'W77S34', source: roleHarvester.nextSource()});
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as harvester");
         };
@@ -87,13 +87,13 @@ module.exports.loop = function () {
         };
     }
     else if (numUpgraders < minUpgraders) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role:'claim', state:'harvest', source: roleUpgrader.nextSource(), home: 'W77S34' });
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE], undefined, {role:'claim', state:'harvest', source: roleUpgrader.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as upgrader");
         };
     }
     else if (numBuilders < minBuilders) {
-        var name = Game.spawns['Spawn1'].createCreep( [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], undefined, {role:'build', state:'harvest', source: roleBuilder.nextSource(), home: 'W77S34' });
+        var name = Game.spawns['Spawn1'].createCreep( [WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE, WORK, CARRY, MOVE], undefined, {role:'build', state:'harvest', source: roleBuilder.nextSource(), home: 'W77S34' });
         if (!(name < 0)) {
             console.log("Spawned new creep: " + name + " as builder");
         };
