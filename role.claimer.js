@@ -1,49 +1,32 @@
 var roleClaimer = {
-    sourceCount: 2,
-    lastSource: 1,
-    nextSource: function() {
-        this.lastSource += 1;
-        if (this.lastSource >= this.sourceCount) {
-            this.lastSource = 0;
-        }
-        return this.lastSource;
-    },
-
+    
     /** @param {Creep} creep **/
     run: function(creep) {
-        if (typeof(creep.memory.home) != 'undefined') {
-            if (creep.room.name != creep.memory.home) {
-                console.log (creep.name + " is away from " + creep.memory.home);
-                creep.moveTo(Game.spawns['Spawn1']);
-                return;
-            } 
-        } else {
-                console.log(creep.name + " does not have a home stting to hardcoded value.");
-                creep.memory.home = 'W36N68';
+        if (typeof(creep.memory.home) == 'undefined') {
+            creep.memory.home = 'W77S34';
+        }
+        if (typeof(creep.memory.taget) == 'undefined') {
+            creep.memory.target = 'W76S33';
         }
         switch (creep.memory.state) {
         case 'claim':
-            if (creep.carry.energy == 0) {
-                creep.memory.source = this.nextSource();
-                creep.memory.state = 'harvest';
-            } else if (creep.upgradeController(creep.room.controller, RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(creep.room.controller);
-            }
-            break;
-        case 'harvest':
-    	    if(creep.carry.energy < creep.carryCapacity) {
-                var sources = creep.room.find(FIND_SOURCES);
-                creep.memory.source = 1;
-                var source = creep.memory.source;
-                if(creep.harvest(sources[source]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(sources[source]);
-                }
+/*            if (creep.room.name == creep.memory.target) {
+                if (creep.claimController(Game.rooms[creep.memory.target].controller) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(Game.rooms[creep.memory.target].controller);
+                }    
             } else {
-                creep.memory.state = 'claim';
+             // move to target room
+                var exit = creep.room.findExitTo(creep.memory.target);
+                creep.moveTo(creep.pos.findClosestByRange(exit));
             }
+*/
+            var targetController = Game.getObjectById('5836b6968b8b9619519eef90');
+            var result = creep.reserveController(targetController);
+            creep.moveTo(Game.getObjectById('5836b6968b8b9619519eef90'));
+            
             break;
         default:
-            creep.memory.state ='harvest';
+            creep.memory.state ='claim';
         }
 	}
 };

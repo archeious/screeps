@@ -11,7 +11,6 @@ var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        creep.say("c");
         if (typeof(creep.memory.home) != 'undefined') {
             if (creep.room.name != creep.memory.home) {
                 console.log (creep.name + " is away from " + creep.memory.home);
@@ -24,7 +23,6 @@ var roleUpgrader = {
         }
         switch (creep.memory.state) {
         case 'claim':
-            creep.say("claiming");
             if (creep.carry.energy == 0) {
                 creep.memory.source = this.nextSource();
                 creep.memory.state = 'harvest';
@@ -33,21 +31,24 @@ var roleUpgrader = {
             }
             break;
         case 'harvest':
-            creep.say("harvesting");
     	    if(creep.carry.energy < creep.carryCapacity) {
                 var sources = creep.room.find(FIND_SOURCES);
+                if (sources.length == 0 ) {
+                    creep.moveTo(Game.flags['UpgradeWait1']);
+                }
                 if (typeof(creep.memory.source) == undefined) { creep.memory.source = 0; }
                 var source = creep.memory.source;
                 if(creep.harvest(sources[source]) == ERR_NOT_IN_RANGE) {
-                    creep.say("moving");
                     creep.moveTo(sources[source]);
                 }
             } else {
                 creep.memory.state = 'claim';
+                creep.say("upgrading");
             }
             break;
         default:
             creep.memory.state ='harvest';
+            creep.say("harvesting");
         }
 	}
 };

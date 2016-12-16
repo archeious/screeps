@@ -22,8 +22,10 @@ var roleHarvester = {
         if (creep.memory.state == 'harvest') {     
             if(creep.carry.energy < creep.carryCapacity) {
                 var sources = creep.room.find(FIND_SOURCES);
+                if (sources.length == 0 ) {
+                    creep.moveTo(Game.flags['HarvestWait']);
+                }
                 if (sources[creep.memory.source].energy == 0) {
-                    console.log("[CREEP] " + creep.name + "Source is empty, switching to new source");
                     creep.memory.source = this.nextSource;
                 }
                 if(creep.harvest(sources[creep.memory.source]) == ERR_NOT_IN_RANGE) {
