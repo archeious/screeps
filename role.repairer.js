@@ -45,11 +45,12 @@ var roleRepairer = {
         
         for (var i=0; i < this.rooms.length; i++) {
             var room = this.rooms[i];          
+            console.log("checking rooom " + room);
             if (Game.rooms[room] != undefined) { roomStructures = Game.rooms[room].find(FIND_STRUCTURES, {filter:function(st){
-                return (st.structureType == STRUCTURE_WALL || st.structureType == STRUCTURE_ROAD ||  st.my) && st.hits < 1000;
+                return (st.structureType == STRUCTURE_WALL || st.structureType == STRUCTURE_ROAD ||  st.my) && st.hits < 1000 && st.structureType != STRUCTURE_CONTROLLER;
             }})};
             console.log(roomStructures.length + " roads to repair");
-            break;
+            if (roomStructures.length > 0) { break; }
         }
                     
         var roomStructureIndex;
@@ -57,6 +58,7 @@ var roleRepairer = {
         if (roomStructuresCount > 0) {
             var roomStructure = roomStructures[0];
             var structId = roomStructure.id;
+            console.log(roomStructure.pos.x + ":" + roomStructure.pos.y);
             if( creep.repair(roomStructure) == ERR_NOT_IN_RANGE) {
                 creep.moveTo(roomStructure);
             }
